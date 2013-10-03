@@ -1,7 +1,7 @@
 {
   "name": "follow-to-amqp",
   "version": "0.0.1",
-  "description": "Listen to couchdb changes and publish them on a amqp exchange",
+  "description": "Listens to a CouchDB database changes \"feed\" and then publish the changed documents to a AMQP exchange",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
