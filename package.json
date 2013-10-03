@@ -1,0 +1,16 @@
+{
+  "name": "follow-to-amqp",
+  "version": "0.0.0",
+  "description": "Listen to couchdb changes and publish them on a amqp exchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/m64253/follow-amqp.git",
+  "author": "Mikael Abrahamsson",
+  "license": "MIT",
+  "dependencies": {
+    "follow": "0.9.0",
+    "amqp": "0.1.7"
+  }
+}
