@@ -1,13 +1,23 @@
 var url = require('url'),
 	follow = require('follow'),
 	amqp = require('amqp'),
-	
+
+	defaultFormat = function (doc) {
+		return {
+			name: doc._id,
+			body: JSON.stringify(doc),
+			options: {
+				contentType: 'application/json'
+			}
+		};
+	};
 	
 	/** 
-	 * @param {Object} cfgAMQP
-	 * @param {Object} cfgCouch
+	 * @param {Object} cfgCouch For more info see: https://npmjs.org/package/amqp
+	 * @param {Object} cfgAMQP For more info see: https://npmjs.org/package/follow
+	 * @param {Function} [format]
 	 */
-	followToAMQP = function (cfgAMQP, cfgCouch) {
+	followToAMQP = function (cfgCouch, cfgAMQP, format) {
 		var connection = amqp.createConnection(cfgAMQP);
 		
 		connection.on('ready', function () {
@@ -20,10 +30,12 @@ var url = require('url'),
 				
 				follow(cfgCouch, function (err, change) {
 					if (!err) {
-						var doc = change.doc;
-						exchange.publish(db + '.' + doc._id, JSON.stringify(doc), {
-							contentType: 'application/json'
-						});
+						var doc = change.doc,
+							msg = (format || defaultFormat)(doc);
+						
+						if (msg.body) {
+							exchange.publish(msg.name, msg.body, msg.options);
+						}
 					}
 				});
 			});
