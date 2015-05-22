@@ -5,7 +5,7 @@ Listens to a CouchDB database changes "feed" and then publish the changed docume
 
 Usage:
 ```javascript
-var followToAMQP = require('follow-amqp');
+var followToAMQP = require('follow-to-amqp');
 
 followToAMQP(
 	// CouchDB Configuration
