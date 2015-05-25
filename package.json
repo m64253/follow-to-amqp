@@ -1,6 +1,6 @@
 {
   "name": "follow-to-amqp",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Listens to a CouchDB database changes \"feed\" and then publish the changed documents to a AMQP exchange",
   "main": "index.js",
   "scripts": {
